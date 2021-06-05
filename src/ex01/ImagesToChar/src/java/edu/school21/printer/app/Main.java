@@ -11,6 +11,7 @@ public class Main {
 	private static char WHITE_PIXEL;
 	private static char BLACK_PIXEL;
 	private static BufferedImage image;
+	private static final String IMAGE_PATH = "/resources/image.bmp";
 
 	public static void main(String[] args) {
 		parseArgs(args);
@@ -18,14 +19,14 @@ public class Main {
 	}
 
 	private static void parseArgs(String[] args)	{
-		if (args.length < 3 || args[0].length() > 1 || args[1].length() > 1)	{
-			System.err.println("Incorrect usage!\nUsage: program_name <char for white pixel> <char for black pixel> <full path to image>!");
+		if (args.length < 2 || args[0].length() > 1 || args[1].length() > 1)	{
+			System.err.println("Incorrect usage!\nUsage: program_name <char for white pixel> <char for black pixel>");
 			System.exit(-1);
 		}
 		WHITE_PIXEL = args[0].charAt(0);
 		BLACK_PIXEL = args[1].charAt(0);
 		try {
-			image = ImageIO.read(new File(args[2]));
+			image = ImageIO.read(File.class.getResource(IMAGE_PATH));
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
